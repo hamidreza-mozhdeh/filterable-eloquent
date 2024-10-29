@@ -15,7 +15,7 @@ Run `composer require hamidreza-mozhdeh/filter-by-query-string`. It will add a `
 ## How to use
 - Add the trait to your models `use FilterByQueryString;`.
 ### Category Model:
-```
+```php
   class Category extends Model
   {
     use CategoryScopesTrait;
@@ -27,7 +27,7 @@ Run `composer require hamidreza-mozhdeh/filter-by-query-string`. It will add a `
   - Please note you have to type hint the `Request` class.
   - #### Important: First of all is better to have a From Request for each of your actions or methods (optional). If not, you have to change `requestMethod` to `input` which is not recommended.
 ### CategoryController:
-```
+```php
 class CategoryController extends Controller
 {
     public function index(CategoryRequest $request)
@@ -36,7 +36,7 @@ class CategoryController extends Controller
     }
 ```
 ### CategoryRequest:
-```
+```php
 class CategoryRequest extends FormRequest
 {
     public function rules(): array
@@ -59,7 +59,7 @@ class CategoryRequest extends FormRequest
 - Define your scopes to use the filters
   - It's better to have a directory and traits for your models in some where like `App\Models\Traits\Scopes\CategoryScopesTrait`.
 ### CategoryScopesTrait:
-```
+```php
 trait CategoryScopesTrait
 {
     public function scopeName(Builder $query, string $name): Builder
@@ -79,7 +79,7 @@ trait CategoryScopesTrait
 Indexed array: `http://0.0.0.0/api/categories?date-between[]=2023-11-23&date-between[]=2023-11-25` <br>
   Associative array: `http://0.0.0.0/api/categories?date-between[from]=2023-11-23&date-between[to]=2023-11-25`
 ## Customization
-```
+```php
   $categories = Category::filter(
     request: $request,
     only: ['name'], // Only accept this filter.
